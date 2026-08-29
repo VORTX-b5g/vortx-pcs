@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORTX PCS</title>
+
+    <link rel="icon" href="vortx-logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="vortx-logo.png" alt="VORTX PCS">
+        </div>
+
+        <div class="links">
+            <a href="#home">Home</a>
+            <a href="#store">Store</a>
+            <a href="#builder">Builder</a>
+            <a href="#repairs">Repairs</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <button type="button" id="cart-toggle" class="cart-toggle" aria-label="Open cart">
+            CART <span id="cart-count" class="cart-count">0</span>
+        </button>
+    </nav>
+
+
+    <main id="home">
+
+        <section class="hero">
+
+            <p class="tag">CUSTOM PC BUILDING</p>
+
+            <h1>
+                VORTX PCs<br>
+                <span>POWER. PRECISION. PERFORMANCE.</span>
+            </h1>
+
+            <p class="description">
+                Custom-built PCs designed for gaming,
+                performance, and everything in between.
+            </p>
+
+            <a class="button" href="#store">SHOP NOW</a>
+
+        </section>
+
+
+        <section id="store" class="store">
+
+            <p class="tag">VORTX STORE</p>
+
+            <h2>SHOP <span>COMPONENTS.</span></h2>
+
+            <div class="store-controls">
+
+                <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+
+                <div class="store-tools">
+                    <input type="search" id="store-search" placeholder="Search products" aria-label="Search products">
+
+                    <select id="store-sort" aria-label="Sort products">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: low to high</option>
+                        <option value="price-desc">Price: high to low</option>
+                        <option value="name">Name A–Z</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <p id="store-count" class="store-count" role="status" aria-live="polite"></p>
+
+            <div id="product-grid" class="product-grid"></div>
+
+        </section>
+
+
+        <section id="builder" class="builder">
+
+            <p class="tag">VORTX CONFIGURATOR</p>
+
+            <h2>BUILD YOUR <span>PC.</span></h2>
+
+            <div class="builder-box">
+
+                <div class="component">
+                    <label for="cpu">CPU</label>
+
+                    <select id="cpu">
+                        <option value="0">Choose CPU</option>
+
+                        <option value="85"  data-socket="AM4" data-mem="DDR4" data-watts="65">AMD Ryzen 5 5500 — $85</option>
+                        <option value="120" data-socket="AM4" data-mem="DDR4" data-watts="65">AMD Ryzen 5 5600 — $120</option>
+                        <option value="150" data-socket="AM4" data-mem="DDR4" data-watts="65">AMD Ryzen 7 5700X — $150</option>
+                        <option value="200" data-socket="AM4" data-mem="DDR4" data-watts="105">AMD Ryzen 7 5800X — $200</option>
+                        <option value="300" data-socket="AM4" data-mem="DDR4" data-watts="105">AMD Ryzen 7 5800X3D — $300</option>
+                        <option value="250" data-socket="AM4" data-mem="DDR4" data-watts="105">AMD Ryzen 9 5900X — $250</option>
+
+                        <option value="180" data-socket="AM5" data-mem="DDR5" data-watts="65">AMD Ryzen 5 7600 — $180</option>
+                        <option value="230" data-socket="AM5" data-mem="DDR5" data-watts="65">AMD Ryzen 7 7700 — $230</option>
+                        <option value="305" data-socket="AM5" data-mem="DDR5" data-watts="120">AMD Ryzen 7 7800X3D — $305</option>
+                        <option value="400" data-socket="AM5" data-mem="DDR5" data-watts="170">AMD Ryzen 9 7900X — $400</option>
+                        <option value="500" data-socket="AM5" data-mem="DDR5" data-watts="170">AMD Ryzen 9 7950X — $500</option>
+
+                        <option value="280" data-socket="AM5" data-mem="DDR5" data-watts="65">AMD Ryzen 5 9600X — $280</option>
+                        <option value="350" data-socket="AM5" data-mem="DDR5" data-watts="65">AMD Ryzen 7 9700X — $350</option>
+                        <option value="480" data-socket="AM5" data-mem="DDR5" data-watts="120">AMD Ryzen 7 9800X3D — $480</option>
+                        <option value="550" data-socket="AM5" data-mem="DDR5" data-watts="170">AMD Ryzen 9 9950X — $550</option>
+
+                        <option value="110" data-socket="LGA1700" data-mem="DDR4" data-watts="65">Intel Core i5-12400F — $110</option>
+                        <option value="151" data-socket="LGA1700" data-mem="DDR4" data-watts="65">Intel Core i5-13400F — $151</option>
+                        <option value="181" data-socket="LGA1700" data-mem="DDR4" data-watts="65">Intel Core i5-14400F — $181</option>
+                        <option value="281" data-socket="LGA1700" data-mem="DDR5" data-watts="181">Intel Core i5-14600K — $281</option>
+                        <option value="380" data-socket="LGA1700" data-mem="DDR5" data-watts="253">Intel Core i7-14700K — $380</option>
+                        <option value="450" data-socket="LGA1700" data-mem="DDR5" data-watts="253">Intel Core i9-14900K — $450</option>
+                    </select>
+                </div>
+
+
+                <div class="component">
+                    <label for="gpu">GPU</label>
+
+                    <select id="gpu">
+                        <option value="0">Choose GPU</option>
+                        <option value="250" data-watts="165">RX 7600 — $250</option>
+                        <option value="400" data-watts="245">RX 7700 XT — $400</option>
+                        <option value="500" data-watts="263">RX 7800 XT — $500</option>
+                    </select>
+                </div>
+
+
+                <div class="component">
+                    <label for="motherboard">MOTHERBOARD</label>
+
+                    <select id="motherboard">
+                        <option value="0">Choose Motherboard</option>
+                        <option value="100" data-socket="AM4" data-mem="DDR4">B550 Motherboard (AM4) — $100</option>
+                        <option value="150" data-socket="AM5" data-mem="DDR5">B650 Motherboard (AM5) — $150</option>
+                        <option value="220" data-socket="AM5" data-mem="DDR5">X670 Motherboard (AM5) — $220</option>
+                        <option value="130" data-socket="LGA1700" data-mem="DDR4">B760 Motherboard (LGA1700, DDR4) — $130</option>
+                        <option value="210" data-socket="LGA1700" data-mem="DDR5">Z790 Motherboard (LGA1700, DDR5) — $210</option>
+                    </select>
+                </div>
+
+
+                <div class="component">
+                    <label for="ram">RAM</label>
+
+                    <select id="ram">
+                        <option value="0">Choose RAM</option>
+                        <option value="50"  data-mem="DDR4">16GB DDR4 — $50</option>
+                        <option value="80"  data-mem="DDR4">32GB DDR4 — $80</option>
+                        <option value="110" data-mem="DDR5">32GB DDR5 — $110</option>
+                    </select>
+                </div>
+
+
+                <div class="component">
+                    <label for="storage">STORAGE</label>
+
+                    <select id="storage">
+                        <option value="0">Choose Storage</option>
+                        <option value="60">1TB NVMe — $60</option>
+                        <option value="100">2TB NVMe — $100</option>
+                        <option value="170">4TB NVMe — $170</option>
+                    </select>
+                </div>
+
+
+                <div class="component">
+                    <label for="psu">POWER SUPPLY</label>
+
+                    <select id="psu">
+                        <option value="0">Choose PSU</option>
+                        <option value="70"  data-watts="650">650W PSU — $70</option>
+                        <option value="90"  data-watts="750">750W PSU — $90</option>
+                        <option value="130" data-watts="850">850W PSU — $130</option>
+                    </select>
+                </div>
+
+
+                <div class="component">
+                    <label for="case">CASE</label>
+
+                    <select id="case">
+                        <option value="0">Choose Case</option>
+                        <option value="70"  data-radiator="0">VORTX Airflow — $70</option>
+                        <option value="100" data-radiator="240">VORTX Glass — $100</option>
+                        <option value="150" data-radiator="360">VORTX Elite — $150</option>
+                    </select>
+                </div>
+
+
+                <div class="component">
+                    <label for="cooler">CPU COOLER</label>
+
+                    <select id="cooler">
+                        <option value="0">Choose Cooler</option>
+                        <option value="35"  data-radiator="0"   data-tdp="95">Air Cooler — $35</option>
+                        <option value="80"  data-radiator="240" data-tdp="180">240mm AIO — $80</option>
+                        <option value="120" data-radiator="360" data-tdp="300">360mm AIO — $120</option>
+                    </select>
+                </div>
+
+
+                <div class="total">
+                    <p>ESTIMATED TOTAL</p>
+                    <h3 id="total">$0</h3>
+                </div>
+
+                <div class="build-summary">
+                    <h3>YOUR VORTX BUILD</h3>
+
+                    <div id="summary-list">
+                        <p>No components selected yet.</p>
+                    </div>
+                </div>
+
+                <div id="compatibility" class="compatibility" role="status" aria-live="polite">
+                    Choose your components to check compatibility.
+                </div>
+
+                <button type="button" id="build-button" class="build-button">ADD BUILD TO CART</button>
+
+            </div>
+
+        </section>
+
+
+        <section id="repairs" class="repairs">
+
+            <p class="tag">REPAIR HUB</p>
+
+            <h2>KEEP YOUR PC <span>RUNNING.</span></h2>
+
+            <p class="description">
+                Diagnostics, upgrades, cleaning and full hardware repair —
+                book a slot below and we will confirm your drop-off time.
+            </p>
+
+            <div id="repair-grid" class="repair-grid"></div>
+
+            <div class="form-card">
+
+                <h3>BOOK A REPAIR</h3>
+
+                <form id="repair-form" novalidate>
+
+                    <div class="form-row">
+
+                        <div class="field">
+                            <label for="rp-name">YOUR NAME</label>
+                            <input type="text" id="rp-name" name="name" autocomplete="name" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="rp-email">EMAIL</label>
+                            <input type="email" id="rp-email" name="email" autocomplete="email" required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="field">
+                            <label for="rp-phone">PHONE (OPTIONAL)</label>
+                            <input type="tel" id="rp-phone" name="phone" autocomplete="tel">
+                        </div>
+
+                        <div class="field">
+                            <label for="rp-device">DEVICE</label>
+                            <input type="text" id="rp-device" name="device" placeholder="e.g. custom desktop, MSI laptop">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="field">
+                            <label for="rp-service">SERVICE</label>
+                            <select id="rp-service" name="service" required></select>
+                        </div>
+
+                        <div class="field">
+                            <label for="rp-date">PREFERRED DROP-OFF</label>
+                            <input type="date" id="rp-date" name="date">
+                        </div>
+
+                    </div>
+
+                    <div class="field">
+                        <label for="rp-issue">WHAT IS IT DOING?</label>
+                        <textarea id="rp-issue" name="issue" rows="4" placeholder="Describe the fault, when it started, and anything you have already tried." required></textarea>
+                    </div>
+
+                    <p id="repair-error" class="checkout-error" role="alert"></p>
+
+                    <button type="submit" class="build-button">REQUEST BOOKING</button>
+
+                </form>
+
+                <div id="repair-confirmation" class="order-confirmation" hidden></div>
+
+            </div>
+
+        </section>
+
+
+        <section id="contact" class="contact">
+
+            <p class="tag">GET STARTED</p>
+
+            <h2>READY TO BUILD?</h2>
+
+            <p class="description">
+                Tell us what you need and we will reply by email, usually the same day.
+            </p>
+
+            <div class="form-card">
+
+                <form id="contact-form" novalidate>
+
+                    <div class="form-row">
+
+                        <div class="field">
+                            <label for="ct-name">YOUR NAME</label>
+                            <input type="text" id="ct-name" name="name" autocomplete="name" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="ct-email">EMAIL</label>
+                            <input type="email" id="ct-email" name="email" autocomplete="email" required>
+                        </div>
+
+                    </div>
+
+                    <div class="field">
+                        <label for="ct-subject">WHAT IS THIS ABOUT?</label>
+                        <select id="ct-subject" name="subject">
+                            <option>Custom build enquiry</option>
+                            <option>Repair or upgrade</option>
+                            <option>Order support</option>
+                            <option>Something else</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="ct-message">MESSAGE</label>
+                        <textarea id="ct-message" name="message" rows="4" required></textarea>
+                    </div>
+
+                    <p id="contact-error" class="checkout-error" role="alert"></p>
+
+                    <button type="submit" id="contact-button" class="build-button">CONTACT VORTX</button>
+
+                </form>
+
+                <div id="contact-confirmation" class="order-confirmation" hidden></div>
+
+            </div>
+
+            <p class="contact-details">
+                Or reach us directly at <a id="contact-email-link" href="#">vortxpcs@gmail.com</a>
+            </p>
+
+        </section>
+
+    </main>
+
+<section id="policies" class="policies">
+
+    <p class="tag">VORTX PCS</p>
+
+    <h2>POLICIES & <span>SUPPORT.</span></h2>
+
+    <div class="policy-grid">
+
+        <details class="policy-card">
+            <summary>REFUNDS & RETURNS</summary>
+            <p>
+                Refund and return requests are reviewed on a case-by-case basis.
+                Contact VORTX PCS as soon as possible if you have an issue with
+                your order, and we will work with you to find a solution.
+            </p>
+        </details>
+
+        <details class="policy-card">
+            <summary>ORDER CANCELLATIONS</summary>
+            <p>
+                Orders may be cancelled before work on a custom PC build or
+                order processing has begun. Once a build has entered the
+                assembly or shipping process, cancellation may no longer be
+                possible.
+            </p>
+        </details>
+
+        <details class="policy-card">
+            <summary>CUSTOMER SUPPORT</summary>
+            <p>
+                Need help with an order, custom build, repair, or another
+                question? Contact VORTX PCS at
+                <a href="mailto:vortxpcs@gmail.com">vortxpcs@gmail.com</a>.
+                We will respond as soon as possible.
+            </p>
+        </details>
+
+        <details class="policy-card">
+            <summary>REPAIR POLICY</summary>
+            <p>
+                Repair services are evaluated before work begins. Customers
+                will be informed of expected costs and required work before
+                major repairs are performed.
+            </p>
+        </details>
+
+    </div>
+
+</section>
+
+    <footer>
+        VORTX PCS © 2026
+    </footer>
+''''
+
+    <aside id="cart" class="cart" aria-label="Shopping cart" inert>
+
+        <div class="cart-head">
+            <h3>YOUR CART</h3>
+            <button type="button" id="cart-close" class="cart-close" aria-label="Close cart">&times;</button>
+        </div>
+
+        <div id="cart-items" class="cart-items"></div>
+
+        <div class="cart-foot">
+
+            <div class="cart-line"><span>Subtotal</span><strong id="cart-subtotal">$0</strong></div>
+            <div class="cart-line"><span>Shipping</span><strong id="cart-shipping">$0</strong></div>
+            <div class="cart-line"><span>Tax (8%)</span><strong id="cart-tax">$0</strong></div>
+            <div class="cart-line cart-total"><span>Total</span><strong id="cart-total">$0</strong></div>
+
+            <p class="cart-note" id="cart-note">Free shipping on orders over $500.</p>
+
+            <button type="button" id="checkout-button" class="build-button">CHECKOUT</button>
+
+        </div>
+
+    </aside>
+
+    <div id="overlay" class="overlay" hidden></div>
+
+
+    <div id="checkout" class="modal" hidden>
+
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+
+            <div class="cart-head">
+                <h3 id="checkout-title">CHECKOUT</h3>
+                <button type="button" id="checkout-close" class="cart-close" aria-label="Close checkout">&times;</button>
+            </div>
+
+            <form id="checkout-form" novalidate>
+
+                <div class="field">
+                    <label for="co-name">FULL NAME</label>
+                    <input type="text" id="co-name" name="name" autocomplete="name" required>
+                </div>
+
+                <div class="field">
+                    <label for="co-email">EMAIL</label>
+                    <input type="email" id="co-email" name="email" autocomplete="email" required>
+                </div>
+
+                <div class="field">
+                    <label for="co-address">SHIPPING ADDRESS</label>
+                    <textarea id="co-address" name="address" rows="3" autocomplete="street-address" required></textarea>
+                </div>
+
+                <p id="checkout-error" class="checkout-error" role="alert"></p>
+
+                <button type="submit" class="build-button">PLACE ORDER (<span id="checkout-total">$0</span>)</button>
+
+            </form>
+
+            <div id="order-confirmation" class="order-confirmation" hidden></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="store.js"></script>
+    <script src="services.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
