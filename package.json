@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "name": "vortx-pcs",
   "version": "1.0.0",
@@ -6,13 +5,4 @@
   "dependencies": {
     "stripe": "^18.5.0"
   }
-=======
-{
-  "name": "vortx-pcs",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "stripe": "^18.5.0"
-  }
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 }
