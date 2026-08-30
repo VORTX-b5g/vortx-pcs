@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
 
         const session = await stripe.checkout.sessions.create({
             mode: "payment",
-            line_items: LineItems,
+            line_items: lineItems,
 
             customer_email: customer?.email || undefined,
 
