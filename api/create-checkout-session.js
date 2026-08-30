@@ -1,11 +1,12 @@
 const Stripe = require("stripe");
 
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
 module.exports = async (req, res) => {
     if (req.method !== "POST") {
         return res.status(405).json({ error: "Method not allowed" });
     }
+
+    const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
 
     try {
         const { items, customer } = req.body;
@@ -50,4 +51,4 @@ module.exports = async (req, res) => {
     return res.status(500).json({
         error: error.message || "Unable to create checkout session."
     });
-}
+   }
