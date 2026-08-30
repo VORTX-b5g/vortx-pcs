@@ -59,10 +59,6 @@ const filtersBox = document.getElementById("filters");
 const searchInput = document.getElementById("store-search");
 const sortSelect = document.getElementById("store-sort");
 const storeCount = document.getElementById("store-count");
-<<<<<<< HEAD
-=======
-
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 const cartPanel = document.getElementById("cart");
 const cartItemsBox = document.getElementById("cart-items");
 const cartCount = document.getElementById("cart-count");
@@ -76,26 +72,18 @@ let activeCategory = "All";
 let cart = loadCart();
 
 function money(amount) {
-<<<<<<< HEAD
     return `$${amount.toLocaleString(undefined, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     })}`;
-=======
-    return `$${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 }
 
 function loadCart() {
     try {
         const saved = JSON.parse(localStorage.getItem(CART_KEY));
-<<<<<<< HEAD
         return Array.isArray(saved)
             ? saved.filter(line => line && line.id && line.qty > 0)
             : [];
-=======
-        return Array.isArray(saved) ? saved.filter(line => line && line.id && line.qty > 0) : [];
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
     } catch {
         return [];
     }
@@ -115,32 +103,23 @@ function stockFor(line) {
 }
 
 function cartTotals() {
-<<<<<<< HEAD
-    const subtotal = cart.reduce(
-        (sum, line) => sum + lineProduct(line).price * line.qty,
-        0
+const subtotal = cart.reduce( 
+    (sum, line) => sum + lineProduct(line).price * line.qty,
+     0 
     );
-
+    
     const shipping =
-        subtotal === 0 || subtotal >= FREE_SHIPPING_OVER
-            ? 0
-            : SHIPPING_FLAT;
-
-    const tax = subtotal * TAX_RATE;
-
-    return {
-        subtotal,
-        shipping,
-        tax,
-        total: subtotal + shipping + tax
-    };
-=======
-    const subtotal = cart.reduce((sum, line) => sum + lineProduct(line).price * line.qty, 0);
-    const shipping = subtotal === 0 || subtotal >= FREE_SHIPPING_OVER ? 0 : SHIPPING_FLAT;
-    const tax = subtotal * TAX_RATE;
-
-    return { subtotal, shipping, tax, total: subtotal + shipping + tax };
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
+     subtotal === 0 || subtotal >= FREE_SHIPPING_OVER 
+     ? 0 : SHIPPING_FLAT;
+     
+     const tax = subtotal * TAX_RATE;
+     
+     return {
+         subtotal,
+          shipping,
+           tax,
+            total: subtotal + shipping + tax
+         };
 }
 
 function addToCart(id, product) {
@@ -151,24 +130,16 @@ function addToCart(id, product) {
         if (line.qty >= stock) return false;
         line.qty += 1;
     } else {
-<<<<<<< HEAD
         cart.push(
             product
                 ? { id, qty: 1, custom: product }
                 : { id, qty: 1 }
         );
-=======
-        cart.push(product ? { id, qty: 1, custom: product } : { id, qty: 1 });
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
     }
 
     saveCart();
     renderCart();
     renderProducts();
-<<<<<<< HEAD
-
-=======
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
     return true;
 }
 
@@ -193,7 +164,6 @@ function visibleProducts() {
     const query = searchInput.value.trim().toLowerCase();
 
     let list = products.filter(product => {
-<<<<<<< HEAD
         const matchesCategory =
             activeCategory === "All" ||
             product.category === activeCategory;
@@ -203,20 +173,12 @@ function visibleProducts() {
             product.name.toLowerCase().includes(query) ||
             product.category.toLowerCase().includes(query) ||
             product.blurb.toLowerCase().includes(query);
-=======
-        const matchesCategory = activeCategory === "All" || product.category === activeCategory;
-        const matchesQuery = !query
-            || product.name.toLowerCase().includes(query)
-            || product.category.toLowerCase().includes(query)
-            || product.blurb.toLowerCase().includes(query);
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
         return matchesCategory && matchesQuery;
     });
 
     const sort = sortSelect.value;
 
-<<<<<<< HEAD
     if (sort === "price-asc") {
         list.sort((a, b) => a.price - b.price);
     } else if (sort === "price-desc") {
@@ -230,12 +192,6 @@ function visibleProducts() {
                 Number(Boolean(a.featured))
         );
     }
-=======
-    if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
-    else if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
-    else if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
-    else list.sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
     return list;
 }
@@ -245,7 +201,6 @@ function renderFilters() {
 
     categories.forEach(category => {
         const button = document.createElement("button");
-<<<<<<< HEAD
 
         button.type = "button";
         button.className =
@@ -257,12 +212,6 @@ function renderFilters() {
             "aria-pressed",
             String(category === activeCategory)
         );
-=======
-        button.type = "button";
-        button.className = "filter" + (category === activeCategory ? " active" : "");
-        button.textContent = category.toUpperCase();
-        button.setAttribute("aria-pressed", String(category === activeCategory));
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
         button.addEventListener("click", () => {
             activeCategory = category;
@@ -280,9 +229,7 @@ function renderProducts() {
     grid.innerHTML = "";
 
     if (list.length === 0) {
-<<<<<<< HEAD
-        storeCount.textContent =
-            "No products match your search.";
+        storeCount.textContent = "No products match your search.";
         return;
     }
 
@@ -293,37 +240,19 @@ function renderProducts() {
         const inCart =
             cart.find(line => line.id === product.id)?.qty || 0;
 
-=======
-        storeCount.textContent = "No products match your search.";
-        return;
-    }
-
-    storeCount.textContent = `${list.length} product${list.length === 1 ? "" : "s"}`;
-
-    list.forEach(product => {
-        const inCart = cart.find(line => line.id === product.id)?.qty || 0;
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
         const soldOut = product.stock === 0;
         const maxed = inCart >= product.stock;
 
         const card = document.createElement("article");
-<<<<<<< HEAD
         card.className =
             "product" +
             (product.featured ? " featured" : "");
-=======
-        card.className = "product" + (product.featured ? " featured" : "");
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
         const head = document.createElement("div");
         head.className = "product-head";
 
         const name = document.createElement("h3");
         name.textContent = product.name;
-<<<<<<< HEAD
-
-=======
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
         head.appendChild(name);
 
         if (product.badge) {
@@ -342,7 +271,6 @@ function renderProducts() {
         blurb.textContent = product.blurb;
 
         const stock = document.createElement("p");
-<<<<<<< HEAD
         stock.className =
             "stock" +
             (soldOut
@@ -351,9 +279,6 @@ function renderProducts() {
                     ? " low"
                     : "");
 
-=======
-        stock.className = "stock" + (soldOut ? " out" : product.stock <= 4 ? " low" : "");
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
         stock.textContent = soldOut
             ? "Out of stock"
             : product.stock <= 4
@@ -362,12 +287,7 @@ function renderProducts() {
 
         const price = document.createElement("strong");
         price.className = "product-price";
-<<<<<<< HEAD
-        price.textContent =
-            `$${product.price.toLocaleString()}`;
-=======
         price.textContent = `$${product.price.toLocaleString()}`;
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
         const actions = document.createElement("div");
         actions.className = "product-actions";
@@ -376,10 +296,7 @@ function renderProducts() {
         add.type = "button";
         add.className = "add-button";
         add.disabled = soldOut || maxed;
-<<<<<<< HEAD
 
-=======
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
         add.textContent = soldOut
             ? "SOLD OUT"
             : maxed
@@ -396,10 +313,7 @@ function renderProducts() {
         actions.appendChild(add);
 
         if (product.preset) {
-<<<<<<< HEAD
-            const configure =
-                document.createElement("button");
-
+            const configure = document.createElement("button");
             configure.type = "button";
             configure.className = "ghost-button";
             configure.textContent = "CUSTOMISE";
@@ -421,17 +335,6 @@ function renderProducts() {
             actions
         );
 
-=======
-            const configure = document.createElement("button");
-            configure.type = "button";
-            configure.className = "ghost-button";
-            configure.textContent = "CUSTOMISE";
-            configure.addEventListener("click", () => window.applyPreset?.(product.preset));
-            actions.appendChild(configure);
-        }
-
-        card.append(head, category, blurb, stock, price, actions);
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
         grid.appendChild(card);
     });
 }
@@ -439,7 +342,6 @@ function renderProducts() {
 function renderCart() {
     cartItemsBox.innerHTML = "";
 
-<<<<<<< HEAD
     const itemCount = cart.reduce(
         (sum, line) => sum + line.qty,
         0
@@ -450,11 +352,6 @@ function renderCart() {
         "filled",
         itemCount > 0
     );
-=======
-    const itemCount = cart.reduce((sum, line) => sum + line.qty, 0);
-    cartCount.textContent = String(itemCount);
-    cartCount.classList.toggle("filled", itemCount > 0);
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
     if (cart.length === 0) {
         const empty = document.createElement("p");
@@ -476,12 +373,8 @@ function renderCart() {
         name.textContent = product.name;
 
         const each = document.createElement("span");
-<<<<<<< HEAD
         each.textContent =
             `${money(product.price)} each`;
-=======
-        each.textContent = `${money(product.price)} each`;
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
         info.append(name, each);
 
@@ -498,7 +391,6 @@ function renderCart() {
         const minus = document.createElement("button");
         minus.type = "button";
         minus.textContent = "−";
-<<<<<<< HEAD
         minus.setAttribute(
             "aria-label",
             `Decrease quantity of ${product.name}`
@@ -508,10 +400,6 @@ function renderCart() {
             "click",
             () => setQty(line.id, line.qty - 1)
         );
-=======
-        minus.setAttribute("aria-label", `Decrease quantity of ${product.name}`);
-        minus.addEventListener("click", () => setQty(line.id, line.qty - 1));
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
         const qty = document.createElement("span");
         qty.textContent = String(line.qty);
@@ -519,7 +407,6 @@ function renderCart() {
         const plus = document.createElement("button");
         plus.type = "button";
         plus.textContent = "+";
-<<<<<<< HEAD
         plus.disabled =
             line.qty >= stockFor(line);
 
@@ -532,28 +419,18 @@ function renderCart() {
             "click",
             () => setQty(line.id, line.qty + 1)
         );
-=======
-        plus.disabled = line.qty >= stockFor(line);
-        plus.setAttribute("aria-label", `Increase quantity of ${product.name}`);
-        plus.addEventListener("click", () => setQty(line.id, line.qty + 1));
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
         controls.append(minus, qty, plus);
 
         const lineTotal = document.createElement("strong");
         lineTotal.className = "cart-item-total";
-<<<<<<< HEAD
         lineTotal.textContent =
             money(product.price * line.qty);
-=======
-        lineTotal.textContent = money(product.price * line.qty);
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
         const remove = document.createElement("button");
         remove.type = "button";
         remove.className = "remove";
         remove.textContent = "Remove";
-<<<<<<< HEAD
 
         remove.addEventListener(
             "click",
@@ -604,28 +481,6 @@ function renderCart() {
 
     document.getElementById("checkout-button").disabled =
         cart.length === 0;
-=======
-        remove.addEventListener("click", () => setQty(line.id, 0));
-
-        row.append(info, controls, lineTotal, remove);
-        cartItemsBox.appendChild(row);
-    });
-
-    const { subtotal, shipping, tax, total } = cartTotals();
-
-    document.getElementById("cart-subtotal").textContent = money(subtotal);
-    document.getElementById("cart-shipping").textContent = shipping === 0 && subtotal > 0 ? "FREE" : money(shipping);
-    document.getElementById("cart-tax").textContent = money(tax);
-    document.getElementById("cart-total").textContent = money(total);
-    document.getElementById("checkout-total").textContent = money(total);
-
-    const remaining = FREE_SHIPPING_OVER - subtotal;
-    document.getElementById("cart-note").textContent = subtotal > 0 && remaining > 0
-        ? `Spend ${money(remaining)} more for free shipping.`
-        : "Free shipping on orders over $500.";
-
-    document.getElementById("checkout-button").disabled = cart.length === 0;
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 }
 
 function openCart() {
@@ -648,16 +503,11 @@ function openCheckout() {
     checkoutForm.hidden = false;
     checkoutModal.hidden = false;
     overlay.hidden = false;
-<<<<<<< HEAD
-
-=======
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
     document.getElementById("co-name").focus();
 }
 
 function closeCheckout() {
     checkoutModal.hidden = true;
-<<<<<<< HEAD
 
     if (!cartPanel.classList.contains("open")) {
         overlay.hidden = true;
@@ -672,16 +522,6 @@ function orderNumber() {
 }
 
 async function placeOrder(event) {
-=======
-    if (!cartPanel.classList.contains("open")) overlay.hidden = true;
-}
-
-function orderNumber() {
-    return `VX-${Date.now().toString(36).toUpperCase().slice(-6)}`;
-}
-
-function placeOrder(event) {
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
     event.preventDefault();
 
     const name = document.getElementById("co-name").value.trim();
@@ -689,17 +529,12 @@ function placeOrder(event) {
     const address = document.getElementById("co-address").value.trim();
 
     if (!name || !address) {
-<<<<<<< HEAD
         checkoutError.textContent =
             "Please fill in your name and shipping address.";
-=======
-        checkoutError.textContent = "Please fill in your name and shipping address.";
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
         return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-<<<<<<< HEAD
         checkoutError.textContent =
             "Please enter a valid email address.";
         return;
@@ -807,76 +642,6 @@ checkoutForm.addEventListener(
     "submit",
     placeOrder
 );
-=======
-        checkoutError.textContent = "Please enter a valid email address.";
-        return;
-    }
-
-    const { subtotal, shipping, tax, total } = cartTotals();
-    const reference = orderNumber();
-
-    const lines = cart.map(line => {
-        const product = lineProduct(line);
-        return `${line.qty} x ${product.name}${product.details ? ` (${product.details})` : ""} — ${money(product.price * line.qty)}`;
-    });
-
-    const body = [
-        `Order ${reference}`,
-        "",
-        ...lines,
-        "",
-        `Subtotal: ${money(subtotal)}`,
-        `Shipping: ${shipping === 0 ? "FREE" : money(shipping)}`,
-        `Tax: ${money(tax)}`,
-        `Total: ${money(total)}`,
-        "",
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Address: ${address}`
-    ].join("\n");
-
-    const orders = JSON.parse(localStorage.getItem("vortx-orders") || "[]");
-    orders.push({ reference, placedAt: new Date().toISOString(), total, items: cart });
-    localStorage.setItem("vortx-orders", JSON.stringify(orders));
-
-    cart = [];
-    saveCart();
-    renderCart();
-    renderProducts();
-
-    checkoutForm.hidden = true;
-    orderConfirmation.hidden = false;
-    orderConfirmation.innerHTML = "";
-
-    const heading = document.createElement("h4");
-    heading.textContent = `Order ${reference} placed`;
-
-    const message = document.createElement("p");
-    message.textContent = `Thanks ${name}. A confirmation is on its way to ${email} and we will be in touch about build and delivery times.`;
-
-    const receipt = document.createElement("pre");
-    receipt.className = "receipt";
-    receipt.textContent = body;
-
-    const mail = document.createElement("a");
-    mail.className = "button";
-    mail.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`VORTX order ${reference}`)}&body=${encodeURIComponent(body)}`;
-    mail.textContent = "EMAIL THIS ORDER TO VORTX";
-
-    orderConfirmation.append(heading, message, receipt, mail);
-    checkoutForm.reset();
-}
-
-filtersBox && renderFilters();
-searchInput.addEventListener("input", renderProducts);
-sortSelect.addEventListener("change", renderProducts);
-
-document.getElementById("cart-toggle").addEventListener("click", openCart);
-document.getElementById("cart-close").addEventListener("click", closeCart);
-document.getElementById("checkout-button").addEventListener("click", openCheckout);
-document.getElementById("checkout-close").addEventListener("click", closeCheckout);
-checkoutForm.addEventListener("submit", placeOrder);
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 
 overlay.addEventListener("click", () => {
     closeCheckout();
@@ -885,25 +650,16 @@ overlay.addEventListener("click", () => {
 
 document.addEventListener("keydown", event => {
     if (event.key !== "Escape") return;
-<<<<<<< HEAD
 
     if (!checkoutModal.hidden) {
         closeCheckout();
     } else {
         closeCart();
     }
-=======
-    if (!checkoutModal.hidden) closeCheckout();
-    else closeCart();
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
 });
 
 renderProducts();
 renderCart();
 
 window.addToCart = addToCart;
-<<<<<<< HEAD
 window.openCart = openCart;
-=======
-window.openCart = openCart;
->>>>>>> 02bb3788c57ff1eea22d53489f0160790aea9f77
