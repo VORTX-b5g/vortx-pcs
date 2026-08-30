@@ -2,17 +2,20 @@ const Stripe = require("stripe");
 
 module.exports = async (req, res) => {
     if (req.method !== "POST") {
-        return res.status(405).json({ error: "Method not allowed" });
+        return res.status(405).json({
+            error: "Method not allowed"
+        });
     }
 
     const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
 
     try {
         const { items, customer } = req.body;
 
         if (!Array.isArray(items) || items.length === 0) {
-            return res.status(400).json({ error: "Your cart is empty." });
+            return res.status(400).json({
+                error: "Your cart is empty."
+            });
         }
 
         const lineItems = items.map(item => ({
@@ -29,7 +32,7 @@ module.exports = async (req, res) => {
 
         const session = await stripe.checkout.sessions.create({
             mode: "payment",
-            line_items: lineItems,
+            line_items,
 
             customer_email: customer?.email || undefined,
 
@@ -37,18 +40,24 @@ module.exports = async (req, res) => {
                 allowed_countries: ["US"]
             },
 
-            success_url: "https://vortx-pcs.vercel.app/?payment=success",
-            cancel_url: "https://vortx-pcs.vercel.app/?payment=cancelled"
+            success_url:
+                "https://vortx-pcs.vercel.app/?payment=success",
+
+            cancel_url:
+                "https://vortx-pcs.vercel.app/?payment=cancelled"
         });
 
         return res.status(200).json({
             url: session.url
         });
 
-   } catch (error) {
-    console.error("Stripe checkout error:", error);
+    } catch (error) {
+        console.error("Stripe checkout error:", error);
 
-    return res.status(500).json({
-        error: error.message || "Unable to create checkout session."
-    });
-   }
+        return res.status(500).json({
+            error:
+                error.message ||
+                "Unable to create checkout session."
+        });
+    }
+};
