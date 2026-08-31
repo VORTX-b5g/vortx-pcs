@@ -196,4 +196,71 @@ const contactEmailLink = document.getElementById("contact-email-link");
 contactEmailLink.href = `mailto:${CONTACT_EMAIL}`;
 contactEmailLink.textContent = CONTACT_EMAIL;
 
+
+// CONTACT FORM
+const contactForm = document.getElementById("contact-form");
+const contactError = document.getElementById("contact-error");
+const contactConfirmation = document.getElementById("contact-confirmation");
+const contactButton = document.getElementById("contact-button");
+
+contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    contactError.textContent = "";
+    contactConfirmation.hidden = true;
+
+    const formData = new FormData(contactForm);
+
+    const name = formData.get("name")?.trim();
+    const email = formData.get("email")?.trim();
+    const subject = formData.get("subject")?.trim();
+    const message = formData.get("message")?.trim();
+
+    if (!name || !email || !message) {
+        contactError.textContent = "Please fill out your name, email, and message.";
+        return;
+    }
+
+    contactButton.disabled = true;
+    contactButton.textContent = "SENDING...";
+
+    try {
+        const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                subject,
+                message
+            })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Failed to send message.");
+        }
+
+        contactForm.reset();
+
+        contactConfirmation.textContent =
+            "Message sent successfully! We will get back to you by email.";
+
+        contactConfirmation.hidden = false;
+
+    } catch (error) {
+        console.error("Contact form error:", error);
+
+        contactError.textContent =
+            error.message || "Something went wrong. Please try again.";
+    }
+
+    contactButton.disabled = false;
+    contactButton.textContent = "CONTACT VORTX";
+});
+
+
 updateBuilder();

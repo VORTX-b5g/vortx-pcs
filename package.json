@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "resend": "^6.25.0",
     "stripe": "^18.5.0"
   }
 }
